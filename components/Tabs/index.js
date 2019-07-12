@@ -19,11 +19,11 @@ const topics = document.querySelector('.topics')
     console.log('response', data)
     const tabData = data.data.topics
 // Iterated over the topics creating a new Tab component
-tabData.forEach(tab => { new Tabs(tab,Tabs)
-    const addTab = Tabs()
-    topics.appendChild(addTab)
-   })
-   
+ tabData.forEach(tab => { new Tabs(tab,Tabs)
+     const addTab = Tabs()
+     topics.appendChild(addTab)
+    })
+ 
  })
 
 
