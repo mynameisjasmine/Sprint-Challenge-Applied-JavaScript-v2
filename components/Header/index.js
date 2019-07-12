@@ -17,13 +17,13 @@ function Header() {
 //Created elements
  const header = document.createElement('div');
  const date = document.createElement('span');
- const title = document.createElement('h1');
+ const titleHeader = document.createElement('h1');
  const temp = document.createElement('span');
 
  // Added structure to elements
  header.appendChild(date)
- date.appendChild(title)
- date.appendChild(temp)
+ header.appendChild(titleHeader)
+ header.appendChild(temp)
 
  // Added classes
  header.classList.add('header')
@@ -32,7 +32,7 @@ function Header() {
 
  // Added text
  date.textContent = 'MARCH 28, 2019'
- title.textContent = 'Lambda Times'
+ titleHeader.textContent = 'Lambda Times'
  temp.textContent = '98°'
 
  return header
