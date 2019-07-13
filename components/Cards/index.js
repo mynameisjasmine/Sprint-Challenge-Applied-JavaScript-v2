@@ -22,12 +22,13 @@
 
 
 // GET request
-const cardsPromise = 
-axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
-cardsPromise
+axios
+.get(`https://lambda-times-backend.herokuapp.com/articles`)
 .then(data => {
    console.log('response for cards', data)
-   const cardData = data.data
+   data.data.articles.forEach(article => {
+       articles.appendChild(getCards(props))
+   })
 })
 
 // <div class="card">
@@ -40,7 +41,7 @@ cardsPromise
 //   </div>
 // </div>
 
-function getCards(){
+function getCards(props){
 
 // Created elements
 const card = document.createElement('div');
@@ -52,4 +53,22 @@ const byLine = document.createElement('span');
 
 //Created structure
 card.appendChild(headline)
+card.appendChild(author)
+card.appendChild(imageContainer)
+imageContainer.appendChild(image)
+card.appendChild(byLine)
+
+//Added classes
+card.classList.add('card')
+headline.classList.add('headline')
+author.classList.add('author')
+imageContainer.classList.add('imageContainer')
+
+//Set the content
+headline.textContent = props.headline
+image.src = props.authorPhoto_url
+byLine.textContent = `By: ${props.authorName}`
+
+return card
+
 }

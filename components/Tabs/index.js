@@ -8,29 +8,6 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
-const topics = document.querySelector('.topics')
-//Created GET request
- const promise =
- axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
-
- //Console logged data and reviewed structure
- promise
- .then(data => {
-    console.log('response', data)
-    const tabData = data.data.topics
-// Iterated over the topics creating a new Tab component
- tabData.forEach(tab => { new Tabs(tab,Tabs)
-     const addTab = Tabs()
-     topics.appendChild(addTab)
-    })
- 
- })
-
-
-//const elementTwo = Tabs()
-//topics.appendChild(Tabs())
-
-
 
 
 // Created tab function
@@ -41,16 +18,43 @@ const topics = document.querySelector('.topics')
 
 function Tabs(tab) {
 
-//Added element
-const tabs = document.createElement('div')
+    //Added element
+    const tabs = document.createElement('div')
+    
+    //Added class
+    tabs.classList.add('tab')
+    
+    
+    //Set content
+    tabs.textContent = tab
+    
+    return tabs
+    
+    
+    }
 
-//Added class
-tabs.classList.add('tab')
+
+const topics = document.querySelector('.topics')
+console.log('topics', topics)
+
+//Created GET request
+ axios
+ .get(`https://lambda-times-backend.herokuapp.com/topics`)
+ .then(data => {
+    //console.log('Tabs', data)
+    
+ 
+    // Iterated over the topics creating a new Tab component
+    data.data.topics.forEach(tab => {
+    console.log('tab', tab)
+     topics.appendChild(Tabs(tab))
+    })
+ 
+ }).catch(err => console.error('Tabs', err ))
+
+//const elementTwo = Tabs()
+//topics.appendChild(Tabs())
 
 
 
 
-
-
-
-}
