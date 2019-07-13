@@ -20,16 +20,20 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
+const articles = document.querySelector('.cards-container')
+console.log('article', articles);
 
 // GET request
 axios
 .get(`https://lambda-times-backend.herokuapp.com/articles`)
 .then(data => {
-   console.log('response for cards', data)
-   data.data.articles.forEach(article => {
-       articles.appendChild(getCards(props))
+   
+   data.data.articles.forEach(props => {
+    console.log('cards', props)   
+    
+    articles.appendChild(getCards(props))
    })
-})
+}).catch(error => console.error('Cards error', error))
 
 // <div class="card">
 //   <div class="headline">{Headline of article}</div>
