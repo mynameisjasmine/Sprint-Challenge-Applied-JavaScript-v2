@@ -20,14 +20,20 @@
 
 const cardContainer = document.querySelector('.cards-container');
 
-axios.get(`https://lambda-times-backend.herokuapp.com/articles`)
+axios
+.get(`https://lambda-times-backend.herokuapp.com/articles`)
 .then(response => {
- console.log(response);
- response.data.articles.forEach(item => {
-     const newArticles = Cards(item);
-     cardContainer.appendChild(newArticles)
- })
+ const topics = Object.keys(response.data.articles)
+ 
+ topics.forEach(topic => {
+    response.data.articles[topic].forEach(props => {
+    const newArticles = Cards(props);
+    cardContainer.appendChild(newArticles)
 })
+   })
+     
+})
+
 
 
 
@@ -53,8 +59,8 @@ const byline = document.createElement("span")
 card.appendChild(headline)
 card.appendChild(author)
 author.appendChild(container)
-container.appendChild(image)
-author.appendChild(byLine)
+container.appendChild(images)
+author.appendChild(byline)
 
 
 card.classList.add("card");
