@@ -8,53 +8,39 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
+ const topics = document.querySelector('.topics')
 
+ axios.get(`https://lambda-times-backend.herokuapp.com/topics`)
+ 
+
+.then(response => {
+    console.log('response', response);
+    tabInfo = response.data.topics
+    tabInfo.forEach(props => {
+        topics.appendChild(Tabs(props))
+    })
+});
+
+    
 
 // Created tab function
 
-//The tab component should look like this:
-//    <div class="tab">topic here</div>
+function Tabs(topic) {
+
+    
+    const tabDiv = document.createElement('div')
+    tabDiv.classList.add('tab')
+    tabDiv.textContent = topic
+    
+    
+
+return tabDiv
+    
+}
 
 
-function Tabs(tab) {
 
-    //Added element
-    const tabs = document.createElement('div')
-    
-    //Added class
-    tabs.classList.add('tab')
-    
-    
-    //Set content
-    tabs.textContent = tab
-    
-    return tabs
-    
-    
-    }
-
-
-const topics = document.querySelector('.topics')
-console.log('topics', topics)
-
-//Created GET request
- axios
- .get(`https://lambda-times-backend.herokuapp.com/topics`)
- .then(data => {
-    //console.log('Tabs', data)
-    
  
-    // Iterated over the topics creating a new Tab component
-    data.data.topics.forEach(tab => {
-    console.log('tab', tab)
-     topics.appendChild(Tabs(tab))
-    })
- 
- }).catch(err => console.error('Tabs', err ))
-
-//const elementTwo = Tabs()
-//topics.appendChild(Tabs())
-
 
 
 
